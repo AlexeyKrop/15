@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+</head>
+
+<body>
+    <div id="chat"></div>
+    <input type="text" id="messageInput">
+    <button onclick="sendMessage()">Отправить</button>
+    <button onclick="sendLocation()">Геолокация</button>
+
+    <script>
+        const chat = document.getElementById('chat');
+        const messageInput = document.getElementById('messageInput');
+        let ws;
+
+        function initWebSocket() {
+            ws = new WebSocket('wss://echo-ws-service.herokuapp.com');
+            ws.onopen = function(event) {
+                console.log('WebSocket connection opened');
+            };
+
+            ws.onmessage = function(event) {
+                showMessage(event.data);
+            };
+
+            ws.onerror = function(event) {
+                console.error('WebSocket error:', event);
+            };
+
+            ws.onclose = function(event) {
+                console.log('WebSocket connection closed');
+            };
+        }
+
+        function sendMessage() {
+            const message = messageInput.value;
+            if (message.trim() === '') return;
+            ws.send(message);
+            showMessage(message);
+            messageInput.value = '';
+        }
+
+        function showMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            chat.appendChild(messageElement);
+        }
+
+        function sendLocation() {
+            if (!navigator.geolocation) {
+                showMessage('Геолокация не поддерживается вашим браузером');
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(position => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const locationUrl = https: //www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude};
+                    ws.send(locationUrl);
+                showMessage(Геолокация: $ {
+                    locationUrl
+                });
+            }, error => {
+                console.error('Ошибка при получении геолокации:', error);
+                showMessage('Ошибка при получении геолокации');
+            });
+        }
+
+        initWebSocket();
+    </script>
+</body>
+
+</html>

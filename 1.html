@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Toggle Button</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="iconButton" class="icon-btn" onclick="toggleIcon()">
+    <i id="icon" class="fas fa-arrow-down-left-circle"></i>
+  </button>
+
+    <script>
+        var icon = document.getElementById('icon');
+        var isFilled = false;
+
+        function toggleIcon() {
+            if (isFilled) {
+                icon.classList.remove('fa-arrow-down-left-circle-fill');
+                icon.classList.add('fa-arrow-down-left-circle');
+            } else {
+                icon.classList.remove('fa-arrow-down-left-circle');
+                icon.classList.add('fa-arrow-down-left-circle-fill');
+            }
+            isFilled = !isFilled;
+        }
+    </script>
+</body>
+
+</html>

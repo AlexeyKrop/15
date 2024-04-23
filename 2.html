@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Size Button</title>
+</head>
+
+<body>
+    <button onclick="showScreenSize()">Показать размер экрана</button>
+
+    <script>
+        function showScreenSize() {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            alert('Ширина экрана: ' + width + ' пикселей\nВысота экрана: ' + height + ' пикселей');
+        }
+    </script>
+</body>
+
+</html>
