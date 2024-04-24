@@ -60,11 +60,11 @@
             navigator.geolocation.getCurrentPosition(position => {
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
-                const locationUrl = https: //www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude};
+Вот тут нужно было расскоментировать строку и сделать так
+                  const locationUrl = `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}`;
                     ws.send(locationUrl);
-                showMessage(Геолокация: $ {
-                    locationUrl
-                });
+И тут
+               showMessage(`Геолокация: ${locationUrl}`);
             }, error => {
                 console.error('Ошибка при получении геолокации:', error);
                 showMessage('Ошибка при получении геолокации');
